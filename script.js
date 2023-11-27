@@ -2,12 +2,16 @@ const apiKey = '3GSYUIH0HFVSLJGF';
 const stockSymbol = 'GAME'; // GameSquare stock symbol
 
 const stockPriceElement = document.getElementById('stock-price');
+const updateCounterElement = document.getElementById('update-counter');
 const notificationElement = document.getElementById('notification');
 const yahooButton = document.getElementById('yahoo-button');
-const updateButton = document.getElementById('update-button');
 
 let updateCounter = 0;
 const maxUpdatesPerDay = 25;
+
+function updateCounterDisplay() {
+    updateCounterElement.textContent = `Updates today: ${updateCounter}`;
+}
 
 function fetchStockPrice() {
     // Check if the maximum number of updates per day is reached
@@ -39,6 +43,9 @@ function fetchStockPrice() {
 
                 // Increment the update counter
                 updateCounter++;
+
+                // Update the counter display
+                updateCounterDisplay();
 
                 // Check if the maximum updates per day is reached after the increment
                 if (updateCounter >= maxUpdatesPerDay) {
@@ -72,13 +79,8 @@ yahooButton.addEventListener('click', () => {
     window.open('https://finance.yahoo.com/quote/GAME', '_blank');
 });
 
-// Manual update when the button is clicked
-updateButton.addEventListener('click', () => {
-    fetchStockPrice();
-});
-
 // Initial fetch
 fetchStockPrice();
 
-// Fetch stock price every 5 seconds 
-//setInterval(fetchStockPrice, 5000);
+// Fetch stock price every 5 seconds
+setInterval(fetchStockPrice, 5000);
