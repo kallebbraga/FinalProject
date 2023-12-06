@@ -1,0 +1,20 @@
+CREATE TABLE Steven_Passengers (
+PassengerID NUMBER(4) PRIMARY KEY,
+PassengerName VARCHAR2(50) NOT NULL,
+TicketType VARCHAR(20) NOT NULL,
+PaymentInformation VARCHAR(200) UNIQUE NOT NULL, -- Enforce uniqueness of payment information
+ContactInformation VARCHAR(200) NOT NULL
+);
+
+-- steven_Passengers table
+INSERT INTO Steven_Passengers (PassengerID, PassengerName, TicketType, PaymentInformation, ContactInformation)
+VALUES(13, 'Oliver Twist', 'Multi', '102-102-1022', 'olivertwist@example.com');
+
+INSERT INTO Steven_Passengers_Passengers (PassengerID, PassengerName, TicketType, PaymentInformation, ContactInformation)
+VALUES(14, 'Sophia Loren', 'Single', '103-103-1033', 'sophialoren@example.com');
+
+INSERT INTO Steven_Passengers (PassengerID, PassengerName, TicketType, PaymentInformation, ContactInformation)
+VALUES(15, 'Mason Mount', 'Round', '104-104-1044', 'masonmount@example.com');
+
+INSERT INTO Steven_Passengers (PassengerID, PassengerName, TicketType, PaymentInformation, ContactInformation)
+VALUES(16, 'Ava Gardner', 'Multi', '105-105-1055', 'avagardner@example.com');
