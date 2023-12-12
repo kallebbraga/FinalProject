@@ -30,8 +30,10 @@ function fetchStockPrice() {
             console.log('API Response:', data);
 
             const globalQuote = data['Global Quote'];
-            if (globalQuote && globalQuote['05. price']) {
-                const stockPrice = parseFloat(globalQuote['05. price']);
+            const stockPriceValue = globalQuote && globalQuote['05. price'];
+
+            if (stockPriceValue !== undefined) {
+                const stockPrice = parseFloat(stockPriceValue);
                 stockPriceElement.textContent = `Stock Price: $${stockPrice.toFixed(2)}`;
 
                 if (stockPrice > 2) {
@@ -55,6 +57,7 @@ function fetchStockPrice() {
             stockPriceElement.textContent = 'Error loading stock price';
         });
 }
+
 
 
 
