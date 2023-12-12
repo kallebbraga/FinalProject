@@ -1,5 +1,5 @@
 // script.js
-const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'; // Replace with your actual Alpha Vantage API key
+const apiKey = 'OXLFREL48LCJ4HK6'; // Replace with your actual Alpha Vantage API key
 const stockSymbol = 'GAME';
 
 const stockPriceElement = document.getElementById('stock-price');
