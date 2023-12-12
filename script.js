@@ -1,4 +1,4 @@
-const apiKey = '3GSYUIH0HFVSLJGF';
+const apiKey = ' U3EOXMULW4IQ93VO';
 const stockSymbol = 'GAME';
 
 const stockPriceElement = document.getElementById('stock-price');
