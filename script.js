@@ -20,7 +20,12 @@ function fetchStockPrice() {
     }
 
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${apiKey}`)
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             const globalQuote = data['Global Quote'];
             if (globalQuote && globalQuote['05. price']) {
@@ -48,6 +53,7 @@ function fetchStockPrice() {
             stockPriceElement.textContent = 'Error loading stock price';
         });
 }
+
 
 function showNotification(message) {
     notificationElement.textContent = message;
