@@ -1,5 +1,5 @@
 // script.js
-const apiKey = 'OXLFREL48LCJ4HK6'; // Replace with your actual Alpha Vantage API key
+const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'; // Replace with your actual Alpha Vantage API key
 const stockSymbol = 'GAME';
 
 const stockPriceElement = document.getElementById('stock-price');
@@ -53,12 +53,8 @@ function hideNotification() {
 
 function showDefaultPrice() {
     stockPriceElement.textContent = 'Stock Price: $1.67';
-    showNotification('Buy more stock!');
-}
-
-function showDefaultPrice() {
-    stockPriceElement.textContent = 'Stock Price: $1.67';
     showNotification('Stock price not available. Buy more stock!');
+    alert('Buy more stock!');
 }
 
 yahooButton.addEventListener('click', () => {
