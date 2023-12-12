@@ -85,5 +85,5 @@ updateButton.addEventListener('click', () => {
 // Initial fetch
 fetchStockPrice();
 
-// Fetch stock price every 5 seconds
-//setInterval(fetchStockPrice, 5000);
+// Fetch stock price every 10 seconds
+setInterval(fetchStockPrice, 10000);
