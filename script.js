@@ -27,6 +27,8 @@ function fetchStockPrice() {
             return response.json();
         })
         .then(data => {
+            console.log('API Response:', data);
+
             const globalQuote = data['Global Quote'];
             if (globalQuote && globalQuote['05. price']) {
                 const stockPrice = parseFloat(globalQuote['05. price']);
@@ -53,6 +55,7 @@ function fetchStockPrice() {
             stockPriceElement.textContent = 'Error loading stock price';
         });
 }
+
 
 
 function showNotification(message) {
