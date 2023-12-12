@@ -80,4 +80,4 @@ yahooButton.addEventListener('click', () => {
 fetchStockPrice();
 
 // Fetch stock price every 10 seconds
-setInterval(fetchStockPrice, 10000);
+setInterval(fetchStockPrice, 60000);
