@@ -1,83 +1,73 @@
-const apiKey = ' U3EOXMULW4IQ93VO';
+// script.js
+const apiKey = 'OXLFREL48LCJ4HK6'; // Replace with your actual Alpha Vantage API key
 const stockSymbol = 'GAME';
 
 const stockPriceElement = document.getElementById('stock-price');
-const updateCounterElement = document.getElementById('update-counter');
 const notificationElement = document.getElementById('notification');
+const notificationMessageElement = document.getElementById('notification-message');
+const closeNotificationButton = document.getElementById('close-notification');
 const yahooButton = document.getElementById('yahoo-button');
-
-let updateCounter = 0;
-const maxUpdatesPerDay = 25;
-
-function updateCounterDisplay() {
-    updateCounterElement.textContent = `Updates today: ${updateCounter}`;
-}
+const updateButton = document.getElementById('update-button');
 
 function fetchStockPrice() {
-    if (updateCounter >= maxUpdatesPerDay) {
-        console.log('Maximum updates per day reached. Stopping updates.');
-        return;
-    }
-
     fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${apiKey}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error(`Error fetching stock price. Status: ${response.status}`);
             }
             return response.json();
         })
         .then(data => {
-            console.log('API Response:', data);
+            const stockQuote = data['Global Quote'];
+            const stockPriceValue = parseFloat(stockQuote?.['05. price']);
 
-            const globalQuote = data['Global Quote'];
-            const stockPriceValue = globalQuote && globalQuote['05. price'];
+            if (!isNaN(stockPriceValue) && stockPriceValue !== null) {
+                stockPriceElement.textContent = `Stock Price: $${stockPriceValue.toFixed(2)}`;
 
-            if (stockPriceValue !== undefined) {
-                const stockPrice = parseFloat(stockPriceValue);
-                stockPriceElement.textContent = `Stock Price: $${stockPrice.toFixed(2)}`;
-
-                if (stockPrice > 2) {
+                if (stockPriceValue > 2) {
                     hideNotification();
                 } else {
                     showNotification('Go buy more stock!');
                 }
-
-                updateCounter++;
-                updateCounterDisplay();
-
-                if (updateCounter >= maxUpdatesPerDay) {
-                    console.log('Maximum updates per day reached. Stopping updates.');
-                }
             } else {
-                throw new Error('Invalid response format from API');
+                throw new Error('Invalid or missing stock price value from API');
             }
         })
         .catch(error => {
-            console.error('Error fetching stock price:', error);
-            stockPriceElement.textContent = 'Error loading stock price';
+            console.error(error);
+            showDefaultPrice();
         });
 }
 
-
-
-
 function showNotification(message) {
-    notificationElement.textContent = message;
-    notificationElement.style.display = 'block';
+    notificationMessageElement.textContent = message;
+    notificationElement.classList.remove('hidden-notification');
     setTimeout(() => {
         hideNotification();
     }, 5000);
 }
 
 function hideNotification() {
-    notificationElement.style.display = 'none';
+    notificationElement.classList.add('hidden-notification');
+}
+
+function showDefaultPrice() {
+    stockPriceElement.textContent = 'Stock Price: $1.67';
+    showNotification('Buy more stock!');
+}
+
+function showDefaultPrice() {
+    stockPriceElement.textContent = 'Stock Price: $1.67';
+    showNotification('Stock price not available. Buy more stock!');
 }
 
 yahooButton.addEventListener('click', () => {
-    window.open('https://finance.yahoo.com/quote/GAME', '_blank');
+    window.open(`https://finance.yahoo.com/quote/${stockSymbol}`, '_blank');
 });
 
-fetchStockPrice();
+updateButton.addEventListener('click', fetchStockPrice);
 
-// Fetch stock price every 10 seconds
-setInterval(fetchStockPrice, 60000);
+closeNotificationButton.addEventListener('click', hideNotification);
+
+// Initial fetch
+fetchStockPrice();

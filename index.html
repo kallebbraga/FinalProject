@@ -8,19 +8,16 @@
 </head>
 <body>
     <div id="stock-container">
-        <div id="header">
-            <h1>GameSquare Stock Tracker</h1>
-            <div id="update-counter">Updates today: 0</div>
+        <h1>GameSquare Stock Tracker</h1>
+        <p id="stock-price">Loading...</p>
+        <div id="notification" class="hidden-notification">
+            <span id="notification-message"></span>
+            <button id="close-notification">&times;</button>
         </div>
-        <div id="content">
-            <div id="stock-info">
-                <p id="stock-price">Loading...</p>
-                <div id="notification">Stock Price Alert!</div>
-            </div>
-            <button id="yahoo-button">View on Yahoo Finance</button>
-        </div>
-    </div>
+        <button id="yahoo-button">View on Yahoo Finance</button>
+        <button id="update-button">Update Stock Price</button>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
+    </div>
 </body>
 </html>

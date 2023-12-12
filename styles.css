@@ -1,34 +1,33 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #3498db; /* Updated background color */
+    background-color: #3498db;
     margin: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    color: #fff;
 }
 
 #stock-container {
     text-align: center;
     background-color: #fff;
-    color: #333; /* Updated text color */
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
 }
 
 h1 {
-    color: #3498db; /* Match the background color */
+    margin: 0;
+    color: #3498db;
 }
 
 #stock-price {
     font-size: 24px;
-    color: #3498db; /* Match the background color */
+    color: #3498db;
     margin: 10px 0;
-}
-
-#update-counter {
-    color: #555;
 }
 
 #notification {
@@ -54,3 +53,33 @@ button {
 button:hover {
     background-color: #d35400;
 }
+
+/* styles.css */
+#notification {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: center;
+}
+
+.hidden-notification {
+    display: none;
+}
+
+#close-notification {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+}
+
